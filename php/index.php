@@ -6,7 +6,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>didtheyplay.soccer</title>
+    <title>Jersey Location</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/mobile.css" />
     <style>
@@ -45,7 +45,7 @@
     <header>
       <div class="header-title">
         <img class="header-image" src="../img/ball.png" />
-        <h1>didtheyplay.soccer?</h1>
+        <h1>Jersey Location</h1>
         
         <!-- THESE ARE FOR THE LOGIN AND REGISTER BUTTONS -->
         <div class="login-register-buttons">
@@ -62,10 +62,8 @@
       <nav class="header-nav">
         <ul>
           <li><a href="index.php" id="this">Home</a></li>
-          <li><a href="players.php">Players</a></li>
-          <li><a href="fixtures.php">Fixtures</a></li>
-          <li><a href="tables.php">Tables</a></li>
-          <li><a href="user.php">User</a></li>
+          <li><a href="jerseys.php">Jerseys</a></li>
+          <li><a href="user.php">User Collection</a></li>
         </ul>
       </nav>
     </header>

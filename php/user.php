@@ -80,11 +80,9 @@
       </div>
       <nav class="header-nav">
         <ul>
-          <li><a href="index.php">Home</a></li>
-          <li><a href="players.php">Players</a></li>
-          <li><a href="fixtures.php">Fixtures</a></li>
-          <li><a href="tables.php">Tables</a></li>
-          <li><a href="" id="this">User</a></li>
+          <li><a href="index.php" id="this">Home</a></li>
+          <li><a href="jerseys.php">Jerseys</a></li>
+          <li><a href="user.php">User Collection</a></li>
         </ul>
       </nav>
     </header>

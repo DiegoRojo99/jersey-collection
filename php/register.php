@@ -50,11 +50,9 @@
       </div>
       <nav class="header-nav">
         <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../players.html">Players</a></li>
-          <li><a href="../fixtures.html">Fixtures</a></li>
-          <li><a href="../tables.html">Tables</a></li>
-          <li><a href="user.php" id="this">User</a></li>
+          <li><a href="index.php" id="this">Home</a></li>
+          <li><a href="jerseys.php">Jerseys</a></li>
+          <li><a href="user.php">User Collection</a></li>
         </ul>
       </nav>
     </header>
