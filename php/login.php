@@ -3,19 +3,6 @@
   setcookie("userLog",$_POST["username"],time()+DAY);
 
   include ("connectToDB.inc");
-  function getUserAdmin(){
-  $dataBase = connectDB();
-
-  $queryAdmin  = 'SELECT * FROM users ORDER BY username';
-  $resultAdmin = mysqli_query($dataBase, $queryAdmin) or die('Query failed: '.mysqli_error($dataBase));
-  while ($lineAdmin = mysqli_fetch_array($resultAdmin, MYSQL_ASSOC)) {
-    extract($lineAdmin);
-    if($Username==$_COOKIE['userLog']){
-      return $Admin;
-    }
-  }
-  return 0;
-  }
 ?>
 
 <!DOCTYPE html>
@@ -72,11 +59,6 @@
           <li><a href="fixtures.php">Fixtures</a></li>
           <li><a href="tables.php">Tables</a></li>
           <li><a href="user.php">User</a></li>
-          <?php
-            if(getUserAdmin()){
-              echo '<li><a href="admin.php">Admin</a></li>';
-            }
-          ?>
         </ul>
       </nav>
     </header>
