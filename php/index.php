@@ -66,36 +66,12 @@
           <li><a href="fixtures.php">Fixtures</a></li>
           <li><a href="tables.php">Tables</a></li>
           <li><a href="user.php">User</a></li>
-          <?php
-            if(getUserAdmin()){
-              echo '<li><a href="admin.php">Admin</a></li>';
-            }
-          ?>
         </ul>
       </nav>
     </header>
     <main>
       <section>
-        <h2 style="text-align: center">Home</h2>
-        <p style="text-align: center">
-          Welcome to our project. We are bringing you an easy way to keep up
-          with your favorite players.<br />
-          Just go to the players tab and start looking for the player you want,
-          with just his name and the competition he plays in.
-        </p>
-        <div>
-          <img
-            class="player-example"
-            src="../img/fekir.png"
-            alt="Example of a player search, with data from a player called Nabil Fekir"
-            style="float: left"
-          />
-          <p style="padding: 80px 0; text-align: center">
-            This is an example of what a player search would look like,<br />
-            with all the information about that players, including his profile
-            photo, and the team and league he plays for, and his stats.
-          </p>
-        </div>
+        
       </section>
 
       <!-- THESE ARE FOR THE LOGIN AND REGISTER BUTTONS -->
@@ -138,12 +114,6 @@
   
               <label for="email"><b>E-Mail</b></label>
               <input type="email" placeholder="email@domain.com" name="email" required>
-  
-              <label for="phone"><b>Telephone</b></label>
-              <input type="tel" placeholder="(###) ###-####" name="phone" pattern = "\(\d{3}\) +\d{3}-\d{4}" required>
-         
-              <label for="birthdate"><b>Date of Birth</b></label>
-              <input type = "date" placeholder = "mm/dd/yyyy" name="birthdate" required>
                 
               <button type ="submit">Register</button>
               <button type ="reset" class="clearButton">Clear</button>

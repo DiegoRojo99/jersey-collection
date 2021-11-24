@@ -64,14 +64,12 @@
             $username=$_POST['username'];
             $password=$_POST['password'];
             $email=$_POST['email'];
-            $phone=$_POST['phone'];
-            $birthdate=$_POST['birthdate'];
             
             $dataBase = connectDB();
-            $q1='INSERT INTO users VALUES("';
+            $q1='INSERT INTO Users VALUES("';
             $q2='","';
             $q3='");';
-            $query=$q1.$username.$q2.$password.$q2.$email.$q2.$phone.$q2.$birthdate.$q3;
+            $query=$q1.$username.$q2.$password.$q2.$email.$q3;
             $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
 
             mysql_close($dataBase);
@@ -120,12 +118,6 @@
   
               <label for="email"><b>E-Mail</b></label>
               <input type="email" placeholder="email@domain.com" name="email" required>
-  
-              <label for="phone"><b>Telephone</b></label>
-              <input type="tel" placeholder="(###) ###-####" name="phone" pattern = "\(\d{3}\) +\d{3}-\d{4}" required>
-         
-              <label for="birthdate"><b>Date of Birth</b></label>
-              <input type = "date" placeholder = "mm/dd/yyyy" name="birthdate" required>
                 
               <button type ="submit">Register</button>
               <button type ="reset" class="clearButton">Clear</button>

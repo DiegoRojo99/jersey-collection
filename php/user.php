@@ -187,12 +187,6 @@
   
               <label for="email"><b>E-Mail</b></label>
               <input type="email" placeholder="email@domain.com" name="email" required>
-  
-              <label for="phone"><b>Telephone</b></label>
-              <input type="tel" placeholder="(###) ###-####" name="phone" pattern = "\(\d{3}\) +\d{3}-\d{4}" required>
-         
-              <label for="birthdate"><b>Date of Birth</b></label>
-              <input type = "date" placeholder = "mm/dd/yyyy" name="birthdate" required>
                 
               <button type ="submit">Register</button>
               <button type ="reset" class="clearButton">Clear</button>

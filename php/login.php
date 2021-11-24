@@ -70,7 +70,7 @@
         $pass=$_POST['password'];
 
         $dataBase = connectDB();
-        $query='SELECT * FROM users;';
+        $query='SELECT * FROM Users;';
         $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
         $loggedIn=false;
         
@@ -84,8 +84,6 @@
             if($Username==$user && $Password==$pass){
                 $u=$Username;
                 $e=$Email;
-                $p=$Phone;
-                $b=$BirthDate;
                 $loggedIn=true;
             } 
             
@@ -149,12 +147,6 @@
               <label for="email"><b>E-Mail</b></label>
               <input type="email" placeholder="email@domain.com" name="email" required>
   
-              <label for="phone"><b>Telephone</b></label>
-              <input type="tel" placeholder="(###) ###-####" name="phone" pattern = "\(\d{3}\) +\d{3}-\d{4}" required>
-         
-              <label for="birthdate"><b>Date of Birth</b></label>
-              <input type = "date" placeholder = "mm/dd/yyyy" name="birthdate" required>
-                
               <button type ="submit">Register</button>
               <button type ="reset" class="clearButton">Clear</button>
             </div>
