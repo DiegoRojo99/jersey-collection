@@ -1,0 +1,388 @@
+@import url("https://fonts.googleapis.com/css2?family=Shrikhand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap");
+
+/*These attributes will make sure the footer stays on the bottom when the content of the page changes*/
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #244f26;
+  padding: 30px 0 20px 0;
+}
+
+.header-title {
+  display: flex;
+  align-items: flex-start;
+}
+
+.header-image {
+  width: 60px;
+  padding-right: 20px;
+  align-self: center;
+  position: relative;
+  animation: movingFootball linear 10s infinite 1s alternate;
+}
+
+@keyframes movingFootball {
+  0% {
+    opacity: 0.5;
+    left: 0px;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    opacity: 0.5;
+    left: 600px;
+    transform: rotate(1080deg);
+  }
+}
+
+header h1 {
+  color: white;
+  font-family: "Shrikhand", cursive;
+  letter-spacing: 4px;
+  font-size: 3rem;
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+nav li {
+  padding: 2rem 1rem;
+  display: inline;
+}
+
+li > a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+}
+
+li > a:hover {
+  color: rgb(133, 126, 111);
+}
+
+#this {
+  color: rgb(133, 126, 111);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 60px;
+}
+
+.title {
+  text-align: center;
+}
+
+.player-search-form {
+  display: flex;
+  /* flex-direction: column; */
+}
+
+.player-form-section {
+  margin: 10px;
+}
+
+.player-profile {
+  margin-top: 20px;
+  background-color: rgba(133, 126, 111, 0.2);
+  padding: 20px;
+  border: 2px solid rgb(133, 126, 111);
+}
+
+.player-profile-body {
+  display: flex;
+  flex-direction: row;
+}
+
+.player-profile h2 {
+  padding: 0 0 0 20px;
+  margin: 0;
+}
+
+.player-profile ul {
+  margin-top: 0;
+  padding: 0;
+}
+.player-profile li {
+  display: block;
+}
+
+.name-photo {
+  padding: 20px;
+  text-align: center;
+}
+
+#player-photo {
+  border: 2px solid rgb(133, 126, 111);
+}
+
+.bio-info {
+  width: 200px;
+  padding: 20px;
+  line-height: 1.5rem;
+}
+
+.club-info {
+  text-align: center;
+}
+
+#club-logo {
+  height: 100px;
+  padding: 20px 0;
+}
+
+.club-info ul:first-child {
+  font-size: 2rem;
+}
+
+.club-info li {
+  font-size: 1em;
+  margin: 0;
+  padding-bottom: 0.5rem;
+}
+.club-info > ul > li > img {
+  height: 1.2rem;
+  padding-right: 0.5rem;
+  vertical-align: bottom;
+}
+
+.did-they-play {
+  color: rgb(133, 126, 111);
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 2px solid rgb(133, 126, 111);
+  display: block;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+}
+.did-they-play:hover {
+  color: #ffffff;
+  background: #244f26;
+  border-color: #244f26;
+  transition: all 0.4s ease 0s;
+}
+
+.did-they-play:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.player-search-error {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+  line-height: 2rem;
+}
+
+.player-example {
+  width: 400px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="date"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: #104703;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type="reset"] {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.login-form,
+.register-form {
+  margin-top: 10px;
+  padding: 10px;
+  border-style: solid;
+  border-radius: 10px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  background-color: #244f26;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+footer a {
+  color: rgb(133, 126, 111);
+}
+
+/* All buttons */
+button {
+  background-color: #104703;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: solid;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Change button opacity */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Clear button red */
+.clearButton {
+  background-color: #f44336;
+}
+
+/* Close X div */
+.close-x-div {
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+/* Login and register form area */
+.login-info,
+.register-info {
+  padding-top: 30px;
+  padding-inline: 15px;
+}
+
+/* Creates a window for the login and register*/
+.login-window,
+.register-window {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+
+/* Window Box Settings */
+.login-window-box,
+.register-window-box {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto;
+  border: 1px solid #888;
+  width: 60%;
+}
+
+/* The Close X */
+.close {
+  position: absolute;
+  right: 20px;
+  top: -25px;
+  color: #000;
+  font-size: 55px;
+  font-weight: bold;
+}
+
+/* X turns red when hover*/
+.close:hover {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  animation: animatezoom 1s;
+}
+
+@keyframes animatezoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Container Padding */
+.container {
+  padding: 16px;
+}
+
+.login-register-buttons {
+  padding-left: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  li > a {
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+  }
+  header h1 {
+    font-size: 2rem;
+  }
+}
+
+/* PHP Styling */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.button {
+  background-color: #f44336;
+  color: white;
+  padding: 7px 10px;
+  margin: 8px 0;
+  border: solid;
+  cursor: pointer;
+  width: 100%;
+  text-decoration: none;
+}
