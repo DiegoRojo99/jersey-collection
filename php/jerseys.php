@@ -74,29 +74,33 @@
         
         echo "<h3 align='center'>Welcome $u</br></h3>";
 
-        echo  "<table>
-                <tr>
-                    <th>Jersey</th>
-                </tr>";
+        echo  "<table>";
+        $numberOfJerseys=0;
+
 
         while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
         {
         extract($row);
-
-            echo  "<tr>
-                    <td><img src='$JerseyImage'/></br>
+            if($numberOfJerseys==5){
+                echo "</tr>";
+                $numberOfJerseys=0;
+            }
+            if($numberOfJerseys==0){
+                echo "<tr>";
+            }
+            if ($numberOfJerseys<5){
+                echo  "<td><img src='$JerseyImage'/></br>
                     $TeamName</br>
                     $Season $Edition <img class='team-logo' src='$TeamLogo'/></td>
-                </tr>";
+                ";
+                $numberOfJerseys+=1;
+            }
             
             
         }
-        echo "</table>";
+        echo "</tr></table>";
 
         mysql_close($dataBase);
-
-           
-
       ?>
       </section>
 

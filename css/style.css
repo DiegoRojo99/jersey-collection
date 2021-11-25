@@ -304,20 +304,6 @@ button:hover {
   cursor: pointer;
 }
 
-/* Add Zoom Animation */
-.animate {
-  animation: animatezoom 1s;
-}
-
-@keyframes animatezoom {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
 /* Container Padding */
 .container {
   padding: 16px;
@@ -325,16 +311,6 @@ button:hover {
 
 .login-register-buttons {
   padding-left: 20px;
-}
-
-@media only screen and (max-width: 600px) {
-  li > a {
-    font-size: 1.25rem;
-    letter-spacing: 1px;
-  }
-  header h1 {
-    font-size: 2rem;
-  }
 }
 
 /* PHP Styling */
