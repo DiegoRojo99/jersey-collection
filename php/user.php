@@ -73,7 +73,7 @@
         WHERE Own.Username="'.$u.'";';
         $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
         
-        echo "<h3 align='center'>Here are the jerseys you have saved to your collection.</br></h3>";
+        echo "<h3 align='center'>Owned Jersey Collection</br></h3>";
 
         echo  "<table>";
         $numberOfJerseys=0;
@@ -89,12 +89,41 @@
             if($numberOfJerseys==0){
                 echo "<tr>";
             }
-            if ($numberOfJerseys<5){
+            if ($numberOfJerseys<5 && $Owned){
                 echo  "<td><img src='$JerseyImage'/></br>
                     $TeamName</br>
                     $Season $Edition <img class='team-logo' src='$TeamLogo'/></td>
                 ";
                 $numberOfJerseys+=1;
+            }
+            
+            
+        }
+        echo "</tr></table>";
+
+        echo "<h3 align='center'>Wanted Jersey Collection</br></h3>";
+
+        $query='SELECT * FROM Own JOIN Jersey on Own.JerseyId=Jersey.JerseyId JOIN Team ON Jersey.TeamId=Team.TeamId 
+        WHERE Own.Username="'.$u.'";';
+        $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
+        echo  "<table>";
+        $numberOfWantedJerseys=0;
+        while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
+        {
+        extract($row);
+            if($numberOfWantedJerseys==5){
+                echo "</tr>";
+                $numberOfWantedJerseys=0;
+            }
+            if($numberOfWantedJerseys==0){
+                echo "<tr>";
+            }
+            if ($numberOfWantedJerseys<5 && $Wanted){
+                echo  "<td><img src='$JerseyImage'/></br>
+                    $TeamName</br>
+                    $Season $Edition <img class='team-logo' src='$TeamLogo'/></td>
+                ";
+                $numberOfWantedJerseys+=1;
             }
             
             

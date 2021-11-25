@@ -76,8 +76,6 @@
 
         echo  "<table>";
         $numberOfJerseys=0;
-
-
         while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
         {
         extract($row);
@@ -95,8 +93,6 @@
                 ";
                 $numberOfJerseys+=1;
             }
-            
-            
         }
         echo "</tr></table>";
 
