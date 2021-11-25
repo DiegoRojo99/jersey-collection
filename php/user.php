@@ -6,45 +6,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>didtheyplay.soccer</title>
+    <title>Jersey Collection</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/mobile.css" />
     <style>
-      table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      td, th {
-        border: 1px solid #dddddd;
-        text-align: center;
-        padding: 8px;
-      }
-
-      tr:nth-child(even) {
-        background-color: #dddddd;
-      }
-
-      .button {
-        background-color: #f44336;
-        color: white;
-        padding: 7px 10px;
-        margin: 8px 0;
-        border: solid;
-        cursor: pointer;
-        width: 100%;
-        text-decoration: none;
-      }
-
-      .login-register-buttons{
+      	.login-register-buttons{
         <?php
           if(isset($_COOKIE['userLog'])){
             echo "display:none;";
           }
         ?>
       }
-
       .logout-button{
         <?php
           if(isset($_COOKIE['userLog'])){
@@ -57,14 +29,19 @@
       .logout-button button{
         background-color: #f44336;
       }
-
+            
+      img{
+        height: 100px;
+      }
+      .team-logo{
+        height:20px;
+      }
     </style>
   </head>
   <body>
     <header>
       <div class="header-title">
-        <img class="header-image" src="../img/ball.png" />
-        <h1>didtheyplay.soccer?</h1>
+        <h1>Jersey Collection</h1>
         
         <!-- THESE ARE FOR THE LOGIN AND REGISTER BUTTONS -->
         <div class="login-register-buttons">
@@ -88,61 +65,50 @@
     </header>
     <main>
       <section>
-      
-        <?php 
+      <?php 
 
-        $loggedIn=false;
-        $u=$_COOKIE['userLog'];
-        if(isset($u)){
-            $loggedIn=true;
+      $loggedIn=false;
+      $u=$_COOKIE['userLog'];
+      if(isset($u)){
+          $loggedIn=true;
+      }
+
+      if($loggedIn==false){
+          echo "<p> You have to log-in first </p>";
+      }else{
+        $dataBase = connectDB();
+        $query='SELECT * FROM Own JOIN Jersey on Own.JerseyId=Jersey.JerseyId JOIN Team ON Jersey.TeamId=Team.TeamId;';
+        $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
+       
+        echo "<h3 align='center'>Welcome $u</br></h3>";
+
+        echo  "<table>
+                <tr>
+                  <th>Image</th>
+                  <th>Team and Edition</th>
+                  <th>Team Logo</th>
+                </tr>";
+
+        while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
+        {
+        extract($row);
+
+            if($Username==$_COOKIE['userLog']){
+              echo  "<tr>
+                      <td><img src='$JerseyImage'/></td>
+                      <td>$TeamName</br>$Season $Edition</td>
+                      <td><img class='team-logo' src='$TeamLogo' alt='There is no team logo'/></td>
+                    </tr>";
+            } 
+            
         }
+        echo "</table>";
 
-        if($loggedIn==false){
-            echo "<p> You have to log-in first </p>";
-        }else{
-          $dataBase = connectDB();
-          $query='SELECT * FROM follow JOIN player on follow.playerId=player.playerId;';
-          $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
-         
-          echo "<h3 align='center'>Welcome $u</br></h3>";
+        mysql_close($dataBase);
 
-          echo  "<table>
-                  <tr>
-                    <th>Player Name</th>
-                    <th>Appearances</th>
-                    <th>Minutes</th>
-                    <th>Goals</th>
-                    <th>Assists</th>
-                    <th>Delete Option</th>
-                  </tr>";
+      }        
 
-          while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
-          {
-          extract($row);
-
-              if($Username==$_COOKIE['userLog']){
-                define("DAY",60*60*24);
-                setcookie("selectedPlayer",$PlayerId,time()+DAY);
-
-                echo  "<tr>
-                        <td>$FirstName $LastName</td>
-                        <td>$Appearances</td>
-                        <td>$Minutes</td>
-                        <td>$Goals</td>
-                        <td>$Assists</td>
-                        <td><a href='delete.php?followPlayerId=$PlayerId' class='button'>Delete</a></td>
-                      </tr>";
-              } 
-              
-          }
-          echo "</table>";
-
-          mysql_close($dataBase);
-
-        }        
-
-        ?>
-
+      ?>
       </section>
 
       <!-- THESE ARE FOR THE LOGIN AND REGISTER BUTTONS -->
@@ -196,18 +162,15 @@
           </form>
         </div>
       </section>
-
     </main>
+
     <footer>
       <div>
-        All statistics provided by
-        <a href="http://www.api-football.org">api-football</a>.
+        This page is possible thanks to 
+        <a href="https://github.com/DiegoRojo99">Diego Rojo</a>.
       </div>
       <div>
-        Some icons made by
-        <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
-        <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a
-        >.
+        All images are taken from the teams social media pages.
       </div>
     </footer>
   </body>

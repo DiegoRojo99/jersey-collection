@@ -6,7 +6,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jersey Location</title>
+    <title>Jersey Collection</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/mobile.css" />
     <style>
@@ -44,8 +44,7 @@
   <body>
     <header>
       <div class="header-title">
-        <img class="header-image" src="../img/ball.png" />
-        <h1>Jersey Location</h1>
+        <h1>Jersey Collection</h1>
         
         <!-- THESE ARE FOR THE LOGIN AND REGISTER BUTTONS -->
         <div class="login-register-buttons">
@@ -124,16 +123,14 @@
         </div>
       </section>
     </main>
+
     <footer>
       <div>
-        All statistics provided by
-        <a href="http://www.api-football.org">api-football</a>.
+        This page is possible thanks to 
+        <a href="https://github.com/DiegoRojo99">Diego Rojo</a>.
       </div>
       <div>
-        Some icons made by
-        <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
-        <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a
-        >.
+        All images are taken from the teams social media pages.
       </div>
     </footer>
   </body>

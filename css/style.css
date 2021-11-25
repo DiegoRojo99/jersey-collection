@@ -24,28 +24,6 @@ header {
   align-items: flex-start;
 }
 
-.header-image {
-  width: 60px;
-  padding-right: 20px;
-  align-self: center;
-  position: relative;
-  animation: movingFootball linear 10s infinite 1s alternate;
-}
-
-@keyframes movingFootball {
-  0% {
-    opacity: 0.5;
-    left: 0px;
-    transform: rotate(0deg);
-  }
-
-  100% {
-    opacity: 0.5;
-    left: 600px;
-    transform: rotate(1080deg);
-  }
-}
-
 header h1 {
   color: white;
   font-family: "Shrikhand", cursive;

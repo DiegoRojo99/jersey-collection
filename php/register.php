@@ -6,7 +6,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>didtheyplay.soccer</title>
+    <title>Jersey Collection</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/mobile.css" />
     <style>
@@ -29,19 +29,29 @@
       .logout-button button{
         background-color: #f44336;
       }
+            
+      @media only screen and (max-width: 600px) {
+        li > a {
+          font-size: 1.25rem;
+          letter-spacing: 1px;
+        }
+        header h1 {
+          font-size: 2rem;
+        }
+      }
     </style>
   </head>
   <body>
     <header>
       <div class="header-title">
-        <img class="header-image" src="../img/ball.png" />
-        <h1>didtheyplay.soccer?</h1>
+        <h1>Jersey Collection</h1>
         
         <!-- THESE ARE FOR THE LOGIN AND REGISTER BUTTONS -->
         <div class="login-register-buttons">
           <button onclick="document.getElementById('login-form').style.display='block'" style="width:auto;">Login</button>
           <button onclick="document.getElementById('register-form').style.display='block'" style="width:auto;">Register</button>
         </div>
+
         <!-- THIS IS THE LOG-OUT BUTTON -->
         <div class="logout-button">
           <button onclick="location.href='logout.php'">Log Out</button>
@@ -58,7 +68,7 @@
     </header>
     <main>
       <section>
-        <?php
+      <?php
             $username=$_POST['username'];
             $password=$_POST['password'];
             $email=$_POST['email'];
@@ -128,16 +138,14 @@
         </div>
       </section>
     </main>
+
     <footer>
       <div>
-        All statistics provided by
-        <a href="http://www.api-football.org">api-football</a>.
+        This page is possible thanks to 
+        <a href="https://github.com/DiegoRojo99">Diego Rojo</a>.
       </div>
       <div>
-        Some icons made by
-        <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
-        <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a
-        >.
+        All images are taken from the teams social media pages.
       </div>
     </footer>
   </body>

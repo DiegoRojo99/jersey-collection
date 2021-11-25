@@ -1,20 +1,19 @@
 <?php 
-  define("DAY",60*60*24);
-  setcookie("userLog",$_POST["username"],time()+DAY);
+  define("HOUR",60*60);
+  setcookie("userLog",$_POST["username"],time()+HOUR);
 
   include ("connectToDB.inc");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>didtheyplay.soccer</title>
+    <title>Jersey Collection</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/mobile.css" />
-    <style>	
-    .login-register-buttons{
+    <style>
+      	.login-register-buttons{
         <?php
           if(isset($_COOKIE['userLog'])){
             echo "display:none;";
@@ -33,19 +32,29 @@
       .logout-button button{
         background-color: #f44336;
       }
+            
+      @media only screen and (max-width: 600px) {
+        li > a {
+          font-size: 1.25rem;
+          letter-spacing: 1px;
+        }
+        header h1 {
+          font-size: 2rem;
+        }
+      }
     </style>
   </head>
   <body>
     <header>
       <div class="header-title">
-        <img class="header-image" src="../img/ball.png" />
-        <h1>didtheyplay.soccer?</h1>
+        <h1>Jersey Collection</h1>
         
         <!-- THESE ARE FOR THE LOGIN AND REGISTER BUTTONS -->
         <div class="login-register-buttons">
           <button onclick="document.getElementById('login-form').style.display='block'" style="width:auto;">Login</button>
           <button onclick="document.getElementById('register-form').style.display='block'" style="width:auto;">Register</button>
         </div>
+
         <!-- THIS IS THE LOG-OUT BUTTON -->
         <div class="logout-button">
           <button onclick="location.href='logout.php'">Log Out</button>
@@ -53,7 +62,7 @@
 
       </div>
       <nav class="header-nav">
-      <ul>
+        <ul>
           <li><a href="index.php" id="this">Home</a></li>
           <li><a href="jerseys.php">Jerseys</a></li>
           <li><a href="user.php">User Collection</a></li>
@@ -61,48 +70,48 @@
       </nav>
     </header>
     <main>
-      <section>
+    <section>
       
-        <?php 
-        $user=$_POST['username'];
-        $pass=$_POST['password'];
+      <?php 
+      $user=$_POST['username'];
+      $pass=$_POST['password'];
 
-        $dataBase = connectDB();
-        $query='SELECT * FROM Users;';
-        $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
-        $loggedIn=false;
-        
+      $dataBase = connectDB();
+      $query='SELECT * FROM Users;';
+      $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
+      $loggedIn=false;
+      
 
-        $u="";$e="";$p="";$b="";
+      $u="";$e="";$p="";$b="";
 
-        while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
-        {
-        extract($row);
+      while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
+      {
+      extract($row);
 
-            if($Username==$user && $Password==$pass){
-                $u=$Username;
-                $e=$Email;
-                $loggedIn=true;
-            } 
-            
-        }
+          if($Username==$user && $Password==$pass){
+              $u=$Username;
+              $e=$Email;
+              $loggedIn=true;
+          } 
+          
+      }
 
-        if($loggedIn==false){
-            echo "<p> The email or password are incorrect </p>";
-            setcookie("userLog","",time()-DAY);
-        }else{
-            echo    "<h2 style='text-align: center'> 
-                        Welcome $u
-                    </h2>";
-        
-            echo    "<p style='text-align: center'>
-                        You are now logged-in.
-                    </p>";
-        }        
+      if($loggedIn==false){
+          echo "<p> The email or password are incorrect </p>";
+          setcookie("userLog","",time()-DAY);
+      }else{
+          echo    "<h2 style='text-align: center'> 
+                      Welcome $u
+                  </h2>";
+      
+          echo    "<p style='text-align: center'>
+                      You are now logged-in.
+                  </p>";
+      }        
 
-        mysql_close($dataBase);
-        ?>
-      </section>
+      mysql_close($dataBase);
+      ?>
+    </section>
 
       <!-- THESE ARE FOR THE LOGIN AND REGISTER BUTTONS -->
       <section class="login-and-register">
@@ -144,7 +153,7 @@
   
               <label for="email"><b>E-Mail</b></label>
               <input type="email" placeholder="email@domain.com" name="email" required>
-  
+                
               <button type ="submit">Register</button>
               <button type ="reset" class="clearButton">Clear</button>
             </div>
@@ -156,16 +165,14 @@
         </div>
       </section>
     </main>
+
     <footer>
       <div>
-        All statistics provided by
-        <a href="http://www.api-football.org">api-football</a>.
+        This page is possible thanks to 
+        <a href="https://github.com/DiegoRojo99">Diego Rojo</a>.
       </div>
       <div>
-        Some icons made by
-        <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
-        <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a
-        >.
+        All images are taken from the teams social media pages.
       </div>
     </footer>
   </body>
