@@ -72,7 +72,7 @@
         $query='SELECT * FROM Jersey JOIN Team ON Jersey.TeamId=Team.TeamId;';
         $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
         
-        echo "<h3 align='center'>Welcome $u</br></h3>";
+        echo "<h3 align='center'>Here you can find a large collection of jerseys and you can select the ones you own to keep track of your collection. </br></h3>";
 
         echo  "<table>";
         $numberOfJerseys=0;

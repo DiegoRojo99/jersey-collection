@@ -58,8 +58,8 @@
       <nav class="header-nav">
         <ul>
           <li><a href="index.php">Home</a></li>
-          <li><a href="jerseys.php">Jerseys</a></li>
-          <li><a href="user.php"  id="this">User Collection</a></li>
+          <li><a href="jerseys.php" id="this">Jerseys</a></li>
+          <li><a href="user.php">User Collection</a></li>
         </ul>
       </nav>
     </header>
@@ -67,45 +67,41 @@
       <section>
       <?php 
 
-      $loggedIn=false;
-      $u=$_COOKIE['userLog'];
-      if(isset($u)){
-          $loggedIn=true;
-      }
-
-      if($loggedIn==false){
-          echo "<p> You have to log-in first </p>";
-      }else{
+        $u=$_COOKIE['userLog'];
         $dataBase = connectDB();
-        $query='SELECT * FROM Own JOIN Jersey on Own.JerseyId=Jersey.JerseyId JOIN Team ON Jersey.TeamId=Team.TeamId;';
+        $query='SELECT * FROM Own JOIN Jersey on Own.JerseyId=Jersey.JerseyId JOIN Team ON Jersey.TeamId=Team.TeamId 
+        WHERE Own.Username="'.$u.'";';
         $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
-       
-        echo "<h3 align='center'>Welcome $u</br></h3>";
+        
+        echo "<h3 align='center'>Here are the jerseys you have saved to your collection.</br></h3>";
 
-        echo  "<table>
-                <tr>
-                  <th>Jersey</th>
-                </tr>";
+        echo  "<table>";
+        $numberOfJerseys=0;
+
 
         while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
         {
         extract($row);
-
-            if($Username==$_COOKIE['userLog']){
-              echo  "<tr>
-                      <td><img src='$JerseyImage'/></br>
-                      $TeamName</br>
-                      $Season $Edition <img class='team-logo' src='$TeamLogo'/></td>
-                    </tr>";
-            } 
+            if($numberOfJerseys==5){
+                echo "</tr>";
+                $numberOfJerseys=0;
+            }
+            if($numberOfJerseys==0){
+                echo "<tr>";
+            }
+            if ($numberOfJerseys<5){
+                echo  "<td><img src='$JerseyImage'/></br>
+                    $TeamName</br>
+                    $Season $Edition <img class='team-logo' src='$TeamLogo'/></td>
+                ";
+                $numberOfJerseys+=1;
+            }
+            
             
         }
-        echo "</table>";
+        echo "</tr></table>";
 
         mysql_close($dataBase);
-
-      }        
-
       ?>
       </section>
 
