@@ -58,8 +58,8 @@
       <nav class="header-nav">
         <ul>
           <li><a href="index.php">Home</a></li>
-          <li><a href="jerseys.php">Jerseys</a></li>
-          <li><a href="user.php"  id="this">User Collection</a></li>
+          <li><a href="jerseys.php" id="this">Jerseys</a></li>
+          <li><a href="user.php">User Collection</a></li>
         </ul>
       </nav>
     </header>
@@ -67,44 +67,35 @@
       <section>
       <?php 
 
-      $loggedIn=false;
-      $u=$_COOKIE['userLog'];
-      if(isset($u)){
-          $loggedIn=true;
-      }
 
-      if($loggedIn==false){
-          echo "<p> You have to log-in first </p>";
-      }else{
         $dataBase = connectDB();
-        $query='SELECT * FROM Own JOIN Jersey on Own.JerseyId=Jersey.JerseyId JOIN Team ON Jersey.TeamId=Team.TeamId;';
+        $query='SELECT * FROM Jersey JOIN Team ON Jersey.TeamId=Team.TeamId;';
         $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
-       
+        
         echo "<h3 align='center'>Welcome $u</br></h3>";
 
         echo  "<table>
                 <tr>
-                  <th>Jersey</th>
+                    <th>Jersey</th>
                 </tr>";
 
         while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
         {
         extract($row);
 
-            if($Username==$_COOKIE['userLog']){
-              echo  "<tr>
-                      <td><img src='$JerseyImage'/></br>
-                      $TeamName</br>
-                      $Season $Edition <img class='team-logo' src='$TeamLogo'/></td>
-                    </tr>";
-            } 
+            echo  "<tr>
+                    <td><img src='$JerseyImage'/></br>
+                    $TeamName</br>
+                    $Season $Edition <img class='team-logo' src='$TeamLogo'/></td>
+                </tr>";
+            
             
         }
         echo "</table>";
 
         mysql_close($dataBase);
 
-      }        
+           
 
       ?>
       </section>
