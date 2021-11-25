@@ -36,6 +36,9 @@
       .team-logo{
         height:20px;
       }
+      .icons{
+        height:30px;
+      }
     </style>
   </head>
   <body>
@@ -89,7 +92,10 @@
             if ($numberOfJerseys<5){
                 echo  "<td><img src='$JerseyImage'/></br>
                     $TeamName</br>
-                    $Season $Edition <img class='team-logo' src='$TeamLogo'/></td>
+                    $Season $Edition <img class='team-logo' src='$TeamLogo'/></br>
+                    <img class='icons' src='../img/trophyIcon.png' alt='Trophy Icon'/>
+                    <img class='icons' src='../img/heartIcon.png' alt='Heart Icon'/>
+                    </td>
                 ";
                 $numberOfJerseys+=1;
             }
