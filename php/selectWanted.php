@@ -86,16 +86,16 @@
         extract($row);
 
             if($JerseyId==$id){
-                $query='UPDATE Own SET Owned=1 WHERE Username="'.$_COOKIE["userLog"].'" AND JerseyId="'.$id.'";';
-                $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
+                $query2='UPDATE Own SET Wanted=1 WHERE Username="'.$_COOKIE["userLog"].'" AND JerseyId="'.$id.'";';
+                $result2=mysqli_query($dataBase,$query2) or die('Query failed: '.mysqli_error($dataBase));
                 $JerseyInDatabase=true;
             } 
             
         }
 
         if($JerseyInDatabase==false){
-            $query='INSERT INTO Own VALUES("'.$_COOKIE["userLog"].'","'.$id.'",1,0);';
-            $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
+            $query3='INSERT INTO Own VALUES("'.$_COOKIE["userLog"].'","'.$id.'",0,1);';
+            $result3=mysqli_query($dataBase,$query3) or die('Query failed: '.mysqli_error($dataBase));
         }
       }else{
         echo "<p>You have to log in first</p>";
