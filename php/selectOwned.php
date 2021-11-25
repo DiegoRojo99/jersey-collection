@@ -30,11 +30,14 @@
         background-color: #f44336;
       }
             
-      img{
-        height: 100px;
-      }
-      .team-logo{
-        height:20px;
+      @media only screen and (max-width: 600px) {
+        li > a {
+          font-size: 1.25rem;
+          letter-spacing: 1px;
+        }
+        header h1 {
+          font-size: 2rem;
+        }
       }
     </style>
   </head>
@@ -57,82 +60,53 @@
       </div>
       <nav class="header-nav">
         <ul>
-          <li><a href="index.php">Home</a></li>
+          <li><a href="index.php" id="this">Home</a></li>
           <li><a href="jerseys.php">Jerseys</a></li>
-          <li><a href="user.php" id="this">User Collection</a></li>
+          <li><a href="user.php">User Collection</a></li>
         </ul>
       </nav>
     </header>
     <main>
-      <section>
+    <section>
+      
       <?php 
+      $dataBase = connectDB();
+      $query='SELECT * FROM Own WHERE Username="'.$_COOKIE["userLog"].'";';
+      $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
+      $id=$_GET['id'];
+      $JerseyInDatabase=false;
+      $LoggedIn=false;
+      if(isset($_COOKIE["userLog"])){
+          $LoggedIn=true;
+      }
 
-        $u=$_COOKIE['userLog'];
-        $dataBase = connectDB();
-        $query='SELECT * FROM Own JOIN Jersey on Own.JerseyId=Jersey.JerseyId JOIN Team ON Jersey.TeamId=Team.TeamId 
-        WHERE Own.Username="'.$u.'";';
-        $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
-        
-        echo "<h3 align='center'>Owned Jersey Collection</br></h3>";
-
-        echo  "<table>";
-        $numberOfJerseys=0;
-
-
+      if($LoggedIn){
         while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
         {
         extract($row);
-            if($numberOfJerseys==5){
-                echo "</tr>";
-                $numberOfJerseys=0;
-            }
-            if($numberOfJerseys==0){
-                echo "<tr>";
-            }
-            if ($numberOfJerseys<5 && $Owned){
-                echo  "<td><img src='$JerseyImage'/></br>
-                    $TeamName</br>
-                    $Season $Edition <img class='team-logo' src='$TeamLogo'/></td>
-                ";
-                $numberOfJerseys+=1;
-            }
-            
+
+            if($JesreyId=$id){
+                $query='UPDATE Own SET Owned=1 WHERE Username="'.$_COOKIE["userLog"].'" AND JerseyId="'.$id.'";';
+                $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
+                $JerseyInDatabase=true;
+            } 
             
         }
-        echo "</tr></table>";
 
-        echo "<h3 align='center'>Wanted Jersey Collection</br></h3>";
-
-        $query='SELECT * FROM Own JOIN Jersey on Own.JerseyId=Jersey.JerseyId JOIN Team ON Jersey.TeamId=Team.TeamId 
-        WHERE Own.Username="'.$u.'";';
-        $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
-        echo  "<table>";
-        $numberOfWantedJerseys=0;
-        while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
-        {
-        extract($row);
-            if($numberOfWantedJerseys==5){
-                echo "</tr>";
-                $numberOfWantedJerseys=0;
-            }
-            if($numberOfWantedJerseys==0){
-                echo "<tr>";
-            }
-            if ($numberOfWantedJerseys<5 && $Wanted){
-                echo  "<td><img src='$JerseyImage'/></br>
-                    $TeamName</br>
-                    $Season $Edition <img class='team-logo' src='$TeamLogo'/></td>
-                ";
-                $numberOfWantedJerseys+=1;
-            }
-            
-            
+        if($JerseyInDatabase==false){
+            $query='INSERT INTO Own VALUES("'.$_COOKIE["userLog"].'","'.$id.'",1,0);';
+            $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
         }
-        echo "</tr></table>";
+      }else{
+        echo "<p>You have to log in first</p>";
+      }
+      
 
-        mysql_close($dataBase);
+      
+
+      mysql_close($dataBase);
       ?>
-      </section>
+    </section>
 
       <!-- THESE ARE FOR THE LOGIN AND REGISTER BUTTONS -->
       <section class="login-and-register">

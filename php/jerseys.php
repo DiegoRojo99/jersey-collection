@@ -93,8 +93,8 @@
                 echo  "<td><img src='$JerseyImage'/></br>
                     $TeamName</br>
                     $Season $Edition <img class='team-logo' src='$TeamLogo'/></br>
-                    <img class='icons' src='../img/trophyIcon.png' alt='Trophy Icon'/>
-                    <img class='icons' src='../img/heartIcon.png' alt='Heart Icon'/>
+                    <a href='selectOwned.php?id=$JerseyId'><img class='icons' src='../img/trophyIcon.png' alt='Trophy Icon'/></a>
+                    <a href='selectWanted.php?id=$JerseyId'><img class='icons' src='../img/heartIcon.png' alt='Heart Icon'/></a>
                     </td>
                 ";
                 $numberOfJerseys+=1;
