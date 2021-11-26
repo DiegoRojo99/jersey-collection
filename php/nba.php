@@ -30,14 +30,14 @@
         background-color: #f44336;
       }
             
-      @media only screen and (max-width: 600px) {
-        li > a {
-          font-size: 1.25rem;
-          letter-spacing: 1px;
-        }
-        header h1 {
-          font-size: 2rem;
-        }
+      img{
+        height: 100px;
+      }
+      .team-logo{
+        height:20px;
+      }
+      .icons{
+        height:30px;
       }
     </style>
   </head>
@@ -60,16 +60,46 @@
       </div>
       <nav class="header-nav">
         <ul>
-          <li><a href="index.php" id="this">Home</a></li>
+          <li><a href="index.php">Home</a></li>
           <li><a href="jerseys.php">Jerseys</a></li>
-          <li><a href="nba.php">NBA</a></li>
+          <li><a href="nba.php" id="this">NBA</a></li>
           <li><a href="user.php">User Collection</a></li>
         </ul>
       </nav>
     </header>
     <main>
       <section>
+      <?php 
+
+        $dataBase = connectDB();
+        $query='SELECT * FROM Team WHERE League="NBA";';
+        $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
         
+        echo "<h3 align='center'>Here you can find all the teams from the NBA. </br></h3>";
+
+        echo  "<table>";
+        $numberOfJerseys=0;
+        while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
+        {
+        extract($row);
+            if($numberOfJerseys==5){
+                echo "</tr>";
+                $numberOfJerseys=0;
+            }
+            if($numberOfJerseys==0){
+                echo "<tr>";
+            }
+            if ($numberOfJerseys<5){
+                echo  "<td><img src='$TeamLogo'/></br>
+                    $TeamName </td>
+                ";
+                $numberOfJerseys+=1;
+            }
+        }
+        echo "</tr></table>";
+
+        mysql_close($dataBase);
+      ?>
       </section>
 
       <!-- THESE ARE FOR THE LOGIN AND REGISTER BUTTONS -->

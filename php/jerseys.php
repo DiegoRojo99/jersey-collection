@@ -62,6 +62,7 @@
         <ul>
           <li><a href="index.php">Home</a></li>
           <li><a href="jerseys.php" id="this">Jerseys</a></li>
+          <li><a href="nba.php">NBA</a></li>
           <li><a href="user.php">User Collection</a></li>
         </ul>
       </nav>
