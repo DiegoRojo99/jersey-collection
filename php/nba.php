@@ -72,31 +72,36 @@
       <?php 
 
         $dataBase = connectDB();
-        $query='SELECT * FROM Team WHERE League="NBA";';
-        $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
-        
         echo "<h3 align='center'>Here you can find all the teams from the NBA. </br></h3>";
 
-        echo  "<table>";
-        $numberOfJerseys=0;
-        while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
+        $q='SELECT DISTINCT Division FROM Team WHERE League="NBA";';
+        $r=mysqli_query($dataBase,$q) or die('Query failed: '.mysqli_error($dataBase));
+        while ($rowDivision = mysqli_fetch_array($r, MYSQL_ASSOC))
         {
-        extract($row);
-            if($numberOfJerseys==5){
-                echo "</tr>";
-                $numberOfJerseys=0;
-            }
-            if($numberOfJerseys==0){
-                echo "<tr>";
-            }
-            if ($numberOfJerseys<5){
-                echo  "<td><a href='team.php?id=$TeamId'><img src='$TeamLogo'/></a></br>
-                    $TeamName </td>
-                ";
-                $numberOfJerseys+=1;
-            }
+          extract($rowDivision);
+          $query='SELECT * FROM Team WHERE League="NBA" AND Division="'.$Division.'";';
+          $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
+          echo  "<table>";
+          $numberOfJerseys=0;
+          while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
+          {
+          extract($row);
+              if($numberOfJerseys==5){
+                  echo "</tr>";
+                  $numberOfJerseys=0;
+              }
+              if($numberOfJerseys==0){
+                  echo "<tr>";
+              }
+              if ($numberOfJerseys<5){
+                  echo  "<td><a href='team.php?id=$TeamId'><img src='$TeamLogo'/></a></br>
+                      $TeamName </td>
+                  ";
+                  $numberOfJerseys+=1;
+              }
+          }
+          echo "</tr></table>";
         }
-        echo "</tr></table>";
 
         mysql_close($dataBase);
       ?>
