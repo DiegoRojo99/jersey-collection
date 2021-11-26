@@ -81,7 +81,7 @@
           extract($rowDivision);
           $query='SELECT * FROM Team WHERE League="NBA" AND Division="'.$Division.'";';
           $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
-          echo  "<table>";
+          echo  "<table><tr><td colspan='5'>$Division</td></tr>";
           $numberOfJerseys=0;
           while ($row = mysqli_fetch_array($result, MYSQL_ASSOC))
           {

@@ -76,8 +76,17 @@
         $dataBase = connectDB();
         $query='SELECT * FROM Jersey JOIN Team ON Jersey.TeamId=Team.TeamId WHERE Jersey.TeamId='.$id.';';
         $result=mysqli_query($dataBase,$query) or die('Query failed: '.mysqli_error($dataBase));
+
+        $qn='SELECT * FROM Team WHERE TeamId='.$id.';';
+        $rn=mysqli_query($dataBase,$qn) or die('Query failed: '.mysqli_error($dataBase));
+        $tn="";
+        while ($rrn = mysqli_fetch_array($rn, MYSQL_ASSOC))
+        {
+        extract($rrn);
+          $tn=$TeamName;
+        }
         
-        echo "<h3 align='center'>Here you can find all the jerseys from the . </br></h3>";
+        echo "<h3 align='center'>Here you can find all the jerseys from the ".$tn.":</br></h3>";
 
         echo  "<table>";
         $numberOfJerseys=0;
