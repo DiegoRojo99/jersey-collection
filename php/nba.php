@@ -39,6 +39,9 @@
       .icons{
         height:30px;
       }
+      td {
+        width: 25% ;
+      }
     </style>
   </head>
   <body>
